@@ -13,9 +13,11 @@ def number_calc():
 
     product = 4 * 30
 
-    floor = 4 / 2.0
+    floor_val = 4 / 2.0
+    print("floor:", floor_val)
+
     # 加
-    sum = 5 + 10
+    sum_val = 5 + 10
     # 减
     difference = 95.5 - 4.3
     # 乘
@@ -26,5 +28,5 @@ def number_calc():
     remainder = 43 % 5
 
     print(
-        f"sum: {sum}, diff: {difference}, product: {product}, quotient: {quotient}, remainder:{remainder}"
+        f"sum: {sum_val}, diff: {difference}, product: {product}, quotient: {quotient}, remainder:{remainder}"
     )
