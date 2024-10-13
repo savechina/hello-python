@@ -1,9 +1,22 @@
+"""
+ sample test
+"""
+
 import unittest
 
 
 class TestExample(unittest.TestCase):
+    """
+    TestExample
+    """
+
     def test_addition(self):
-        print("test first.")
+        """
+        test addition
+        """
+
+        print("first test case.")
+
         self.assertEqual(1 + 1, 2)
 
 
