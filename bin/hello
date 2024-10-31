@@ -3,10 +3,14 @@
 import hello_python
 
 from hello_python.basic import datatype_sample
+from hello_python import cli
+
 
 def main():
     print("Hello ,World")
     datatype_sample.string_sample()
+    cli.cli()
+
 
 if __name__ == "__main__":
     main()

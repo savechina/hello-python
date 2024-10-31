@@ -20,3 +20,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 #test = " python -m unittest discover -s tests"
+hello = "hello_python.cli:cli"
