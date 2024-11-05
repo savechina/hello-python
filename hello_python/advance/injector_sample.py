@@ -1,5 +1,31 @@
-from injector import Module, provider, Injector, inject, singleton
 from dataclasses import dataclass
+from typing import NewType
+
+from injector import Binder, Injector, Module, inject, provider, singleton
+
+Name = NewType("Name", str)
+Description = NewType("Description", str)
+
+
+class User:
+    @inject
+    def __init__(self, name: Name, description: Description):
+        self.name = name
+        self.description = description
+
+
+class UserModule(Module):
+    def configure(self, binder: Binder):
+        binder.bind(User)
+
+
+class UserAttributeModule(Module):
+    def configure(self, binder: Binder):
+        binder.bind(Name, to="Sherlock")
+
+    @provider
+    def describe(self, name: Name) -> Description:
+        return "%s is a man of astounding insight" % name
 
 
 # from pydantic import BaseModel
@@ -19,7 +45,7 @@ class ServiceB:
 
 
 # Step 2: Create an Injector for Dependency Injection
-class MyModule(Module):
+class MyServiceModule(Module):
     def configure(self, binder):
         # Dynamically register classes here
         binder.bind(ServiceA, to=ServiceA, scope=singleton)
@@ -55,7 +81,7 @@ class Outer:
 
 def inject_main():
     """Container setup"""
-    container = Injector(MyModule())
+    container = Injector([MyServiceModule(), UserModule(), UserAttributeModule()])
     container.binder.bind(str, to="World")
 
     greeter = container.get(Greeter)
@@ -71,3 +97,13 @@ def inject_main():
     print(
         service_b_instance.say_hello()
     )  # Output: Hello from ServiceB, with Hello from ServiceA
+
+    name = container.get(Name)
+    print("name:", name)
+
+    print("description:", container.get(Description))
+
+    user = container.get(User)
+    print("user is User Class", isinstance(user, User))
+
+    print(f"user: {user.name},description: {user.description}")
