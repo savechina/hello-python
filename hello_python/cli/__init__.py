@@ -8,7 +8,7 @@ logger.debug("initial hello command...")
 
 @click.group()
 def cli():
-    """A Sample CLI tool"""
+    """A Hello CLI tool"""
     pass
 
 
