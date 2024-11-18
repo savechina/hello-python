@@ -10,7 +10,7 @@ import click
 
 class TestCliCase(unittest.TestCase):
     """
-    TestExample
+    TestCliExample
     """
 
     @patch("click.echo")
