@@ -1,4 +1,7 @@
 import asyncio
+import time
+from concurrent.futures import ThreadPoolExecutor
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
@@ -60,14 +63,14 @@ async def my_async_task_with_timeout(timeout):
 
 
 async def schedule_delay_down(scheduler):
-    await asyncio.sleep(15)
+    await asyncio.sleep(20)
     scheduler.shutdown(True)
 
 
 def schedule_main():
     # Create an instance of AsyncIOScheduler
     scheduler = AsyncIOScheduler()
-    # trigger = IntervalTrigger(seconds=5, max_runs=10)
+
     # Add the asynchronous job with timeout to the scheduler
     scheduler.add_job(
         my_async_task_with_timeout, "interval", seconds=5, args=(1,)
@@ -77,8 +80,38 @@ def schedule_main():
     scheduler.start()
 
     try:
-        asyncio.run(schedule_delay_down(scheduler))
+        # run the asyncio event loop utils complete
+        asyncio.get_event_loop().run_until_complete(schedule_delay_down(scheduler))
+
         # Run the asyncio event loop
         # asyncio.get_event_loop().run_forever()
     except (KeyboardInterrupt, SystemExit):
         pass
+
+
+async def cpu_bound_task():
+    # 模拟 CPU 密集型任务
+    sum = 0
+    for i in range(10000000):
+        # print("i")
+        sum = sum + i
+    print("CPU task finished,sum:", sum)
+
+
+async def io_bound_task():
+    # 模拟 I/O 密集型任务
+    await asyncio.sleep(1)
+    print("I/O task finished")
+
+
+async def thread_pool_task():
+    with ThreadPoolExecutor() as executor:
+        loop = asyncio.get_running_loop()
+        future = loop.run_in_executor(executor, cpu_bound_task)
+        # future = cpu_bound_task
+        await io_bound_task()
+        await future.result()
+
+
+def thread_main():
+    asyncio.run(thread_pool_task())

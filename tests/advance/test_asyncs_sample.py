@@ -24,8 +24,14 @@ class TestAsyncsSample(unittest.TestCase):
         """
         asyncio.run(asyncs_sample.task_main())
 
-    def test_injector_greet_sample(self):
+    def test_scheduler_async_sample(self):
         """
-        test Asyncs task sample
+        test Scheduler Asyncs task sample
         """
         asyncs_sample.schedule_main()
+
+    def test_thread_task_sample(self):
+        """
+        test  ThreadPool Async task sample
+        """
+        asyncs_sample.thread_main()
