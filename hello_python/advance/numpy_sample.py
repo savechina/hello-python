@@ -23,10 +23,10 @@ def gradient_descent(learning_rate=0.1, tolerance=1e-6, max_iter=1000):
         # Check convergence by comparing the change in the objective function value
         curr_value = objective_function(x)
 
-        print(f"Iteration {i+1}: x = {x:.6f}, f(x) = {curr_value:.6f}")
+        print(f"Iteration {i + 1}: x = {x:.6f}, f(x) = {curr_value:.6f}")
 
         if abs(curr_value - prev_value) < tolerance:
-            print(f"Convergence achieved after {i+1} iterations.")
+            print(f"Convergence achieved after {i + 1} iterations.")
             break
 
         prev_value = curr_value

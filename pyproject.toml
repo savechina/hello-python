@@ -1,30 +1,31 @@
-[tool.poetry]
+[project]
 name = "hello-python"
 version = "0.1.0"
 description = ""
-authors = ["RenYan Wei <weirenyan@hotmail.com>"]
+authors = [{ name = "RenYan Wei", email = "weirenyan@hotmail.com" }]
+requires-python = "~=3.10"
 readme = "README.md"
+dependencies = [
+    "requests>=2.32.3,<3",
+    "injector>=0.22.0,<0.23",
+    "coverage>=7.6.4,<8",
+    "numpy>=2.1.3,<3",
+    "click>=8.1.7,<9",
+    "apscheduler>=3.10.4,<4",
+    "pandas>=2.2.3,<3",
+    "pymysql>=1.1.1,<2",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-requests = "^2.32.3"
-injector = "^0.22.0"
-coverage = "^7.6.4"
-numpy = "^2.1.3"
-click = "^8.1.7"
-apscheduler = "^3.10.4"
-pandas = "^2.2.3"
-pymysql = "^1.1.1"
+[project.scripts]
+hello = "hello_python.cli:main"
 
-
-[tool.poetry.group.dev.dependencies]
-pylint = "^3.3.1"
-black = "^24.10.0"
+[dependency-groups]
+dev = [
+    "pylint>=3.3.1,<4",
+    "black>=24.10.0,<25",
+    "ruff>=0.11.4",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-#test = " python -m unittest discover -s tests"
-hello = "hello_python.cli:cli"
+requires = ["hatchling"]
+build-backend = "hatchling.build"

@@ -1,5 +1,5 @@
 """
- sample test
+sample test
 """
 
 import unittest

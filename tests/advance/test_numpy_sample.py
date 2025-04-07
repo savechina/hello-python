@@ -1,5 +1,5 @@
 """
- datatype sample test
+datatype sample test
 """
 
 import unittest

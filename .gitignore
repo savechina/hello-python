@@ -4,6 +4,7 @@
 __pycache__
 
 .vscode
-
+.venv
 hello.log
 .coverage
+.ruff_cache

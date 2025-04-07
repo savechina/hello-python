@@ -1,5 +1,5 @@
 """
- expression sample unittest for basic.expression_sample module
+expression sample unittest for basic.expression_sample module
 """
 
 import unittest

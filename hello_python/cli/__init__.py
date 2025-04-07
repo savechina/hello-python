@@ -28,5 +28,10 @@ def greet(name):
     click.echo(f"Hello, {name}!")
 
 
+def main():
+    """Main entry point for the CLI tool."""
+    cli()
+
+
 # if __name__ == "__main__":
-#     cli()
+#     main()

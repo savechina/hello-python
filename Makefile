@@ -1,8 +1,8 @@
 .PHONY: help install test clean lint format build
 # Variables
-POETRY = poetry
-PYTHON = $(POETRY) run python
-TEST = $(POETRY) run pytest
+UV = uv
+PYTHON = $(UV) run python
+TEST = $(UV) run pytest
 
 #Targets
 help: 
@@ -14,12 +14,16 @@ help:
 	@echo "  format     - Format the code"
 	@echo "  build      - Build the project"
 
+init:
+	@echo "Initializing project..."
+	brew install uv
+	
 install:
 	@echo "Installing dependencies..."
-	$(POETRY) install
+	$(UV) sync
 
 # test:
-# 	$(POETRY) run pytest
+# 	$(UV) run pytest
 
 clean:
 	@echo "Cleaning up..."
@@ -27,16 +31,16 @@ clean:
 	find . -name "*.pyc" -exec rm -f {} +
 	find . -name "__pycache__" -exec rm -rf {} +
 lint:
-	$(POETRY) run pylint .
+	$(UV) run ruff check .
 
 format:
 	@echo "Formating ..."
-	$(POETRY) run black .
+	$(UV) run ruff format .
 
 build:
 	@echo "Building ..."
-	$(POETRY) build
+	$(UV) build
 
 test:
 	@echo "Running tests..."
-	$(POETRY) run python -m unittest discover -s tests
+	$(UV) run python -m unittest discover -s tests
