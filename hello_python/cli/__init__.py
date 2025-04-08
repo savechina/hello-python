@@ -1,5 +1,6 @@
 import click
 import logging
+from .commands import get_commands
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +27,12 @@ def greet(name):
     logger.debug("greet command...")
 
     click.echo(f"Hello, {name}!")
+
+logger.debug("dynmaically load and regester command...")
+# Dynamically load and register command
+for command in get_commands():
+    logger.debug("register command: %s", command.name)
+    cli.add_command(command)
 
 
 def main():
