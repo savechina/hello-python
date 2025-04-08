@@ -83,11 +83,6 @@ def schedule_main():
         # Schedule the delay down task
         #
         time.sleep(1)
-
-        asyncio.get_event_loop().run_until_complete(schedule_delay_down(scheduler))
-    except (KeyboardInterrupt, SystemExit):
-        pass
-
         #
         # run the asyncio event loop utils complete
         asyncio.get_event_loop().run_until_complete(schedule_delay_down(scheduler))
