@@ -22,8 +22,9 @@ install:
 	@echo "Installing dependencies..."
 	$(UV) sync
 
-# test:
-# 	$(UV) run pytest
+test:
+	@echo "Running tests..."
+	$(UV) run pytest -s -v 
 
 clean:
 	@echo "Cleaning up..."
@@ -41,6 +42,6 @@ build:
 	@echo "Building ..."
 	$(UV) build
 
-test:
-	@echo "Running tests..."
-	$(UV) run python -m unittest discover -s tests
+# test:
+# 	@echo "Running tests..."
+# 	$(UV) run python -m unittest discover -s tests

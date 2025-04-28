@@ -8,3 +8,4 @@ __pycache__
 hello.log
 .coverage
 .ruff_cache
+.pytest_cache
