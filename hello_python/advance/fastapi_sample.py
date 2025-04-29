@@ -7,6 +7,7 @@ import sys
 import time
 import psutil
 from fastapi import FastAPI
+import uvicorn.supervisors
 
 # FastAPI 应用
 app = FastAPI()
@@ -55,23 +56,17 @@ def check_pid():
 
 def signal_handler(sig, frame):
     """处理终止信号"""
-    click.echo("Received termination signal")
+    print("Received termination signal")
     stop()
 
 
-@click.group()
-def cli():
-    """Manage FastAPI service"""
-
-
-@cli.command()
 def start():
     """Start FastAPI service"""
     if pid := check_pid():
-        click.echo(f"{APP_NAME} already running with PID {pid}")
+        print(f"{APP_NAME} already running with PID {pid}")
         sys.exit(1)
 
-    click.echo(f"Starting {APP_NAME}...")
+    print(f"Starting {APP_NAME}...")
     os.chdir(WORKING_DIR)
     worker = threading.Thread(target=run_server, daemon=True)
     worker.start()
@@ -81,25 +76,24 @@ def start():
         f.write(str(pid))
     time.sleep(5)
     if running:
-        click.echo(f"{APP_NAME} started with PID {pid}")
+        print(f"{APP_NAME} started with PID {pid}")
         # 捕获信号并保持主进程运行
         signal.signal(signal.SIGINT, signal_handler)
         signal.signal(signal.SIGTERM, signal_handler)
         while running:
             time.sleep(1)
     else:
-        click.echo(f"Failed to start. Check {LOG_FILE}")
+        print(f"Failed to start. Check {LOG_FILE}")
         sys.exit(1)
 
 
-@cli.command()
 def stop():
     """Stop FastAPI service"""
     if not (pid := check_pid()):
-        click.echo(f"{APP_NAME} not running")
+        print(f"{APP_NAME} not running")
         sys.exit(1)
 
-    click.echo(f"Stopping {APP_NAME} (PID {pid})...")
+    print(f"Stopping {APP_NAME} (PID {pid})...")
     global running, server
     running = False
     if server:
@@ -110,25 +104,21 @@ def stop():
         click.echo(f"Force stopping...")
         os.kill(pid, 9)  # SIGKILL
     os.remove(PID_FILE)
-    click.echo(f"{APP_NAME} stopped")
+    print(f"{APP_NAME} stopped")
 
 
-@cli.command()
 def status():
     """Check FastAPI service status"""
     if pid := check_pid():
-        click.echo(f"{APP_NAME} running with PID {pid}")
+        print(f"{APP_NAME} running with PID {pid}")
     else:
-        click.echo(f"{APP_NAME} not running")
+        print(f"{APP_NAME} not running")
 
 
-@cli.command()
 def restart():
     """Restart FastAPI service"""
     stop()
     time.sleep(1)
     start()
+    print("restart....")
 
-
-if __name__ == "__main__":
-    cli()

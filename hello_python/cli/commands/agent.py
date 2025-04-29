@@ -1,28 +1,34 @@
 import click
 
+from hello_python.advance import fastapi_sample
 
 @click.group()
 def agent():
-    """Commands related to Agent."""
+    """AutoAgent an AI Agent Fast MCP Service"""
     pass
 
 
-@agent.command()
-@click.argument("agent_name")
-def create(agent_name):
-    """Create a new agent."""
-    click.echo(f"Project {agent_name} created.")
-
 
 @agent.command()
-@click.argument("agent_name")
-def delete(agent_name):
-    """Delete an existing agent."""
-    click.echo(f"Project {agent_name} deleted.")
+def start():
+    """Start FastAPI service"""
+    click.echo(f"Start to start service...")
+    fastapi_sample.start()
+
+@agent.command()
+def stop():
+    """Stop FastAPI service"""
+    click.echo(f"Start to stop service ...")
+    fastapi_sample.stop()
 
 
 @agent.command()
-@click.argument("agent_name")
-def start(agent_name):
-    """Start an existing agent."""
-    click.echo(f"Start {agent_name} started.")
+def status():
+    """Check FastAPI service status"""
+    click.echo(f"check service status.")
+    fastapi_sample.status()
+
+@agent.command()
+def restart():
+    """Restart FastAPI service"""
+    fastapi_sample.restart()
