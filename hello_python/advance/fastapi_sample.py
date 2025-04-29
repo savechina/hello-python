@@ -1,13 +1,14 @@
-import signal
-import click
-import uvicorn
-import threading
+from concurrent.futures import thread
 import os
+import signal
 import sys
+import threading
 import time
+
+import click
 import psutil
+import uvicorn
 from fastapi import FastAPI
-import uvicorn.supervisors
 
 # FastAPI 应用
 app = FastAPI()
@@ -78,10 +79,11 @@ def start():
     if running:
         print(f"{APP_NAME} started with PID {pid}")
         # 捕获信号并保持主进程运行
-        signal.signal(signal.SIGINT, signal_handler)
-        signal.signal(signal.SIGTERM, signal_handler)
-        while running:
-            time.sleep(1)
+        # signal.signal(signal.SIGINT, signal_handler)
+        # signal.signal(signal.SIGTERM, signal_handler)
+        # while running:
+        #     time.sleep(1)
+        worker.join()
     else:
         print(f"Failed to start. Check {LOG_FILE}")
         sys.exit(1)
@@ -121,4 +123,3 @@ def restart():
     time.sleep(1)
     start()
     print("restart....")
-

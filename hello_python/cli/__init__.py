@@ -28,6 +28,7 @@ def greet(name):
 
     click.echo(f"Hello, {name}!")
 
+
 logger.debug("dynmaically load and regester command...")
 # Dynamically load and register command
 for command in get_commands():

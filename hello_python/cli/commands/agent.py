@@ -2,11 +2,11 @@ import click
 
 from hello_python.advance import fastapi_sample
 
+
 @click.group()
 def agent():
     """AutoAgent an AI Agent Fast MCP Service"""
     pass
-
 
 
 @agent.command()
@@ -14,6 +14,7 @@ def start():
     """Start FastAPI service"""
     click.echo(f"Start to start service...")
     fastapi_sample.start()
+
 
 @agent.command()
 def stop():
@@ -27,6 +28,7 @@ def status():
     """Check FastAPI service status"""
     click.echo(f"check service status.")
     fastapi_sample.status()
+
 
 @agent.command()
 def restart():
