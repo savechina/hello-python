@@ -62,5 +62,12 @@ cursor.execute("SELECT * FROM employees")
 for row in cursor.fetchall():
     print(f"ID: {row[0]}, Name: {row[1]}, Dept: {row[2]}, Salary: {row[3]}")
 
+# Show Some Size
+print("\nShow Some employee list:")
+cursor.execute("SELECT * FROM employees")
+
+for row in cursor.fetchmany(1):
+    print(f"ID: {row[0]}, Name: {row[1]}, Dept: {row[2]}, Salary: {row[3]}")
+
 # Close the connection
 conn.close()
