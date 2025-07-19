@@ -5,7 +5,7 @@ PYTHON = $(UV) run python
 TEST = $(UV) run pytest
 
 #Targets
-help: 
+help:
 	@echo "Available make tasks:"
 	@echo "  install    - Install dependencies"
 	@echo "  test       - Run tests"
@@ -17,18 +17,19 @@ help:
 init:
 	@echo "Initializing project..."
 	brew install uv
-	
+
 install:
 	@echo "Installing dependencies..."
 	$(UV) sync
 
 test:
 	@echo "Running tests..."
-	$(UV) run pytest -s -v 
+	$(UV) run pytest -s -v
 
 clean:
 	@echo "Cleaning up..."
 	rm -rf __pycache__ .pytest_cache .mypy_cache .coverage dist
+	rm *.log
 	find . -name "*.pyc" -exec rm -f {} +
 	find . -name "__pycache__" -exec rm -rf {} +
 lint:
