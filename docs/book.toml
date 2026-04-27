@@ -4,6 +4,16 @@ language = "en"
 src = "src"
 title = "Hello Python"
 
+[preprocessor.admonish]
+assets_version = "3.1.0"
+
+[preprocessor.alerts]
+
+[preprocessor.pagetoc]
+
 [output.html]
+default-theme = "light"
 git-repository-url = "https://github.com/savechina/hello-python"
 git-repository-icon = "fa-github"
+additional-css = ["./assets/css/mdbook-admonish.css", "./theme/pagetoc.css"]
+additional-js = ["./theme/pagetoc.js"]

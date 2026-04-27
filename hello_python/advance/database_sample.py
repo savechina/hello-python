@@ -1,24 +1,57 @@
+"""
+Database Sample (PyMySQL).
+Demonstrates MySQL database connection and basic operations.
+Note: Requires a running MySQL server. See database_sqlite_sample.py for a self-contained alternative.
+"""
+
 import pymysql
 
-host = "127.0.0.1"
-port = 4000
-database = "db"
-username = "name"
-password = "123pwd"
+# Database configuration (replace with your actual credentials)
+DB_CONFIG = {
+    "host": "127.0.0.1",
+    "port": 3306,
+    "user": "root",
+    "password": "your_password",
+    "database": "test_db",
+}
 
-# 打开数据库连接
-db = pymysql.connect(host=host, port=port, user=username, passwd=password, db=database)
 
-# 使用 cursor() 方法创建一个游标对象 cursor
-cursor = db.cursor()
+def connect_sample():
+    """Demonstrates MySQL connection with error handling."""
+    try:
+        db = pymysql.connect(**DB_CONFIG)
+        cursor = db.cursor()
+        cursor.execute("SELECT VERSION()")
+        data = cursor.fetchone()
+        print(f"Database version: {data}")
+        cursor.close()
+        db.close()
+    except pymysql.Error as e:
+        print(f"MySQL connection failed (expected without a running server): {e}")
+        print("Hint: Use database_sqlite_sample.py for a self-contained demo with no server required.")
 
-# 使用 execute()  方法执行 SQL 查询
-cursor.execute("SELECT VERSION()")
 
-# 使用 fetchone() 方法获取单条数据.
-data = cursor.fetchone()
+def query_sample():
+    """Demonstrates basic SQL operations (placeholder, requires live DB)."""
+    try:
+        db = pymysql.connect(**DB_CONFIG)
+        cursor = db.cursor()
+        cursor.execute("CREATE TABLE IF NOT EXISTS demo (id INT PRIMARY KEY, name VARCHAR(50))")
+        cursor.execute("INSERT INTO demo (id, name) VALUES (1, 'Python')")
+        db.commit()
+        cursor.execute("SELECT * FROM demo")
+        rows = cursor.fetchall()
+        for row in rows:
+            print(f"  row: {row}")
+        cursor.execute("DROP TABLE demo")
+        db.commit()
+        cursor.close()
+        db.close()
+    except pymysql.Error as e:
+        print(f"Query failed (expected without a running server): {e}")
 
-print("Database version : %s " % data)
 
-# 关闭数据库连接
-db.close()
+if __name__ == "__main__":
+    connect_sample()
+    print("---")
+    query_sample()

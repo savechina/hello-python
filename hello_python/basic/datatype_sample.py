@@ -26,3 +26,7 @@ def string_sample():
 
     fo = "foo"
     print("foo capitalize:" + fo.capitalize())
+
+
+if __name__ == "__main__":
+    string_sample()

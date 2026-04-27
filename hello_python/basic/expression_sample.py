@@ -30,3 +30,7 @@ def number_calc():
     print(
         f"sum: {sum_val}, diff: {difference}, product: {product}, quotient: {quotient}, remainder:{remainder}"
     )
+
+
+if __name__ == "__main__":
+    number_calc()

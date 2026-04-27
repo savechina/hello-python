@@ -100,3 +100,11 @@ mdbook serve docs/
 - Constitution in `.specify/memory/constitution.md` v2.0.0 — 8 principles, Python-focused
 - CI: GitHub Actions with pytest, ruff, mdbook workflows
 - No pre-commit hooks configured
+
+## Active Technologies
+- Python 3.10+ (per pyproject.toml `requires-python`); tested with Python 3.13.3 + mdBook 0.4.52+ (with admonish, alerts, pagetoc plugins), Click 8.1+ (CLI) (001-python-basic-tutorial)
+- N/A — documentation-only feature, no persistent data (001-python-basic-tutorial)
+- Python 3.10+ (per pyproject.toml `requires-python`); tested with Python 3.13.3 + mdBook 0.4.52+ (with admonish, alerts, pagetoc plugins), Click 8.1+, FastAPI, asyncio, PyMySQL, injector, NumPy (001-python-basic-tutorial)
+
+## Recent Changes
+- 001-python-basic-tutorial: Added Python 3.10+ (per pyproject.toml `requires-python`); tested with Python 3.13.3 + mdBook 0.4.52+ (with admonish, alerts, pagetoc plugins), Click 8.1+ (CLI)
