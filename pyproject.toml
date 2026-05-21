@@ -1,7 +1,24 @@
 [project]
 name = "hello-python"
 version = "0.1.0"
-description = ""
+description = "A systematic Python tutorial with runnable examples — Python 教程 & tutorial covering basics to async, FastAPI, CLI, and NumPy."
+keywords = [
+    "python-tutorial",
+    "python-教程",
+    "learn-python",
+    "python入门",
+    "python编程",
+    "education",
+    "tutorial",
+    "fastapi",
+]
+classifiers = [
+    "Topic :: Education",
+    "Topic :: Software Development :: Teaching",
+    "Natural Language :: Chinese (Simplified)",
+    "Natural Language :: English",
+    "Development Status :: 4 - Beta",
+]
 authors = [{ name = "RenYan Wei", email = "weirenyan@hotmail.com" }]
 requires-python = "~=3.10"
 readme = "README.md"
