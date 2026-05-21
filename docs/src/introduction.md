@@ -17,3 +17,7 @@ Python 的设计哲学被概括为 "The Zen of Python"（Python 之禅），核�
 - **跨平台**：Windows、macOS、Linux 上均可运行
 - **开源**：完全免费，社区活跃
 - **生产力高**：几行代码即可完成其他语言数十行代码的功能
+
+## 下一步
+
+- [快速开始](getting-started.md) → 配置开发环境，安装 Python 和 uv 包管理器

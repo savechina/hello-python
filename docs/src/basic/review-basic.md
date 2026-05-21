@@ -174,3 +174,7 @@ except ValidationError as e:
 - [字符串高级处理](./string-advanced.md)
 
 祝学习顺利！进入进阶部分后，你会接触到异步编程、Web 框架、数据库等更强大的内容。
+
+## 下一步
+
+- [进阶入门](../advance/advance-overview.md) → 开始进阶部分的学习，探索异步编程、FastAPI、数据库等内容

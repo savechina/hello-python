@@ -13,3 +13,7 @@ Python 是一门非常优秀的编程语言，它语法简洁、可读性强、�
 **Hello，Python** 是一个绝佳的学习起点。通过这个项目，你不仅能快速入门 Python 编程，还能通过编写、调试、运行示例代码，迅速掌握 Python 的核心知识点。它涵盖了从基础语法到高级进阶知识的完整学习路径，包括异步编程、Web 框架（FastAPI）、数据库操作、NumPy 数值计算等内容。
 
 本书使用 Python 3.10+ 编写（测试环境为 Python 3.13.3），包管理器使用 `uv`，文档使用 mdBook 构建。请查看 [Getting Started](getting-started.md) 了解如何安装和配置开发环境。
+
+## 下一步
+
+- [简介](introduction.md) → 了解 Python 语言的历史、设计哲学和应用领域
