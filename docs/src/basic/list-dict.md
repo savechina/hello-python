@@ -147,6 +147,71 @@ merged = d1 | d2
 print(merged)  # {'a': 1, 'b': 3, 'c': 4}
 ```
 
+### 示例 5：列表常用方法
+
+```python
+fruits = ["apple", "banana"]
+
+# 添加元素
+fruits.append("cherry")       # 末尾添加 → ['apple', 'banana', 'cherry']
+fruits.insert(1, "apricot")   # 指定位置插入 → ['apple', 'apricot', 'banana', 'cherry']
+fruits.extend(["date", "fig"]) # 批量追加
+
+# 删除元素
+removed = fruits.pop()        # 弹出最后一个 → 'fig'
+fruits.remove("banana")       # 按值删除
+del fruits[0]                 # 按索引删除
+
+# 查找与统计
+idx = fruits.index("apricot") # 返回索引 0
+count = fruits.count("apple") # 返回出现次数
+
+# 排序与反转
+nums = [3, 1, 4, 1, 5]
+nums.sort()                   # 原地排序 → [1, 1, 3, 4, 5]
+nums.reverse()                # 原地反转 → [5, 4, 3, 1, 1]
+```
+
+> [!TIP]
+> `.sort()` 是原地排序（修改原列表），`sorted()` 返回新列表。需要保留原数据时用 `sorted()`。
+
+### 示例 6：字典常用方法
+
+```python
+user = {"name": "Alice", "age": 30, "city": "Shanghai"}
+
+# 安全访问
+name = user.get("name")         # 'Alice'
+missing = user.get("phone", "N/A")  # 'N/A' — 键不存在时返回默认值
+
+# 遍历
+for key in user.keys():         # 遍历键
+    pass
+for value in user.values():     # 遍历值
+    pass
+for k, v in user.items():       # 同时遍历键值
+    print(f"{k}: {v}")
+
+# 修改与删除
+user.update({"age": 31, "role": "admin"})  # 批量更新
+user.pop("city")                # 删除并返回值
+user.setdefault("role", "user") # 键不存在时设默认值
+
+# Python 3.9+ 合并运算符
+defaults = {"theme": "light", "lang": "zh"}
+config = defaults | {"theme": "dark"}  # 合并，右侧覆盖左侧
+```
+
+> [!WARNING]
+> **错误：直接遍历字典时修改大小**
+>
+> ```python
+> for k in d:
+>     d[k + "_new"] = d[k]  # 💥 RuntimeError: dictionary changed size
+> ```
+>
+> **解决**：先收集要添加的键值，遍历结束后再更新；或遍历 `list(d.keys())` 的副本。
+
 </details>
 
 ## 知识检查

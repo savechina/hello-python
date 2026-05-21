@@ -48,7 +48,33 @@ print(
 
 注意除法 `/` 在 Python 中始终返回浮点数（`4 / 2.0` 结果是 `2.0` 而非 `2`）。
 
-### 示例 3：字符串格式化
+### 示例 4：身份比较 `is` vs 值比较 `==`
+
+```python
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+
+print(a == b)   # True — 值相等
+print(a is b)   # False — 不是同一个对象
+print(a is c)   # True — c 和 a 指向同一对象
+
+# 小整数缓存（-5 到 256）
+x = 256
+y = 256
+print(x is y)   # True — Python 缓存了小整数
+
+x = 257
+y = 257
+print(x is y)   # False（交互式环境可能为 True，取决于实现）
+```
+
+> [!WARNING]
+> **常见误区：用 `is` 比较值**
+>
+> `is` 检查的是**身份**（是否是同一个对象），`==` 检查的是**值**（内容是否相等）。
+> 除非你在检查 `None`（推荐 `x is None`），否则应该用 `==` 比较值。
+
 
 ```python
 word = "World"

@@ -47,7 +47,27 @@ print(s3)
 > [!TIP]
 > f-string（Python 3.6+）是推荐方式。`.format()` 适用于动态模板场景。旧式 `%` 格式化已不推荐。
 
-### 示例 3：字符串方法
+### 示例 3：字符串索引与切片
+
+```python
+text = "Python"
+
+# 索引 — 从 0 开始计数
+print(text[0])    # P — 第一个字符
+print(text[-1])   # n — 最后一个字符
+
+# 切片 — [start:stop:step]，stop 不包含
+print(text[0:2])  # Py — 从索引 0 到 1
+print(text[2:])   # thon — 从索引 2 到最后
+print(text[:4])   # Pyth — 从开头到索引 3
+print(text[::-1]) # nohtyP — 反转字符串
+print(text[::2])  # Pto — 每隔一个取一个
+```
+
+> [!TIP]
+> 切片不会越界报错——`text[0:100]` 会安全地返回整个字符串，这与列表切片行为一致。
+
+### 示例 4：字符串方法
 
 ```python
 fo = "foo"
