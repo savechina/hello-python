@@ -1,6 +1,4 @@
-from concurrent.futures import thread
 import os
-import signal
 import sys
 import threading
 import time
@@ -103,7 +101,7 @@ def stop():
     os.kill(pid, os.name == "nt" and 9 or 15)  # SIGTERM (15) for Unix, 9 for Windows
     time.sleep(1)
     if psutil.pid_exists(pid):
-        click.echo(f"Force stopping...")
+        click.echo("Force stopping...")
         os.kill(pid, 9)  # SIGKILL
     os.remove(PID_FILE)
     print(f"{APP_NAME} stopped")

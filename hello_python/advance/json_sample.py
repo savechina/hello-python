@@ -1,4 +1,5 @@
 import json
+import ujson
 from datetime import datetime
 from typing import List
 
@@ -87,8 +88,7 @@ print("\n复杂对象序列化结果:")
 print(complex_json)
 
 
-# use ujson library sample
-import ujson
+# ujson library sample
 
 # 示例数据 (与之前的例子相同)
 data = {

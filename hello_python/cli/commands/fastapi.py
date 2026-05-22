@@ -1,5 +1,4 @@
 import click
-from fastapi import FastAPI
 
 from hello_python.advance.fastapi_server_sample import ServiceManager, app
 

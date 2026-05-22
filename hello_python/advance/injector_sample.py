@@ -1,4 +1,3 @@
-from dataclasses import dataclass
 from typing import NewType
 
 from injector import Binder, Injector, Module, inject, provider, singleton

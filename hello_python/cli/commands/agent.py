@@ -12,21 +12,21 @@ def agent():
 @agent.command()
 def start():
     """Start FastAPI service"""
-    click.echo(f"Start to start service...")
+    click.echo("Start to start service...")
     fastapi_sample.start()
 
 
 @agent.command()
 def stop():
     """Stop FastAPI service"""
-    click.echo(f"Start to stop service ...")
+    click.echo("Start to stop service ...")
     fastapi_sample.stop()
 
 
 @agent.command()
 def status():
     """Check FastAPI service status"""
-    click.echo(f"check service status.")
+    click.echo("check service status.")
     fastapi_sample.status()
 
 

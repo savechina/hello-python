@@ -36,3 +36,10 @@
     - [类型提示](./advance/type-hints.md)
     - [数据类](./advance/dataclasses.md)
     - [阶段复习：进阶部分](./advance/review-advance.md)
+
+# 附录
+
+- [学习路径技能树](./learning_path.md)
+- [常见问题 FAQ](./faq.md)
+- [术语表](./glossary.md)
+- [代码片段速查](./quick_reference/snippets.md)

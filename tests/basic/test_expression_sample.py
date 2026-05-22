@@ -3,7 +3,7 @@ expression sample unittest for basic.expression_sample module
 """
 
 import unittest
-from hello_python.basic import datatype_sample, expression_sample
+from hello_python.basic import expression_sample
 
 
 class TestExpressioneSample(unittest.TestCase):

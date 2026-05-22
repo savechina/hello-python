@@ -16,6 +16,13 @@ def get_commands():
             # Import the module and get the command object
             module_name = f"hello_python.cli.commands.{filename[:-3]}"
             module = importlib.import_module(module_name)
-            command = getattr(module, filename[:-3])
-            commands.append(command)
+            
+            if filename == "tutorial.py":
+                if hasattr(module, "basic"):
+                    commands.append(module.basic)
+                if hasattr(module, "advance"):
+                    commands.append(module.advance)
+            else:
+                command = getattr(module, filename[:-3])
+                commands.append(command)
     return commands

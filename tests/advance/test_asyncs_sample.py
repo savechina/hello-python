@@ -33,7 +33,7 @@ class TestAsyncsSample(unittest.TestCase):
             # 调用被测试的异步函数
             asyncs_sample.schedule_main()
 
-        except Exception as e:
+        except Exception:
             # 处理异常情况。
             # self.fail(f"Async test failed: {e}")
             pass

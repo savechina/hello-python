@@ -34,8 +34,7 @@ async def task_main():
     ]
 
     try:
-        # 设置一个超时时间，假设我们希望所有任务在3秒内完成
-        results = await asyncio.wait_for(asyncio.gather(*tasks), timeout=3)
+        await asyncio.wait_for(asyncio.gather(*tasks), timeout=3)
     except asyncio.TimeoutError:
         print("Some tasks took too long and were cancelled.")
 

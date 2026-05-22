@@ -25,7 +25,8 @@ def args_kwargs_sample():
 
 def lambda_scope_sample():
     """Demonstrates lambda and LEGB scope rule."""
-    square = lambda x: x * x
+    def square(x):
+        return x * x
     print(f"square(5) = {square(5)}")
 
     x = "global"
