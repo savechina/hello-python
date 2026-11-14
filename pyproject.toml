@@ -19,7 +19,7 @@ classifiers = [
     "Development Status :: 4 - Beta",
 ]
 authors = [{ name = "RenYan Wei", email = "weirenyan@hotmail.com" }]
-requires-python = "~=3.10"
+requires-python = ">=3.10,<4"
 readme = "README.md"
 dependencies = [
     "requests>=2.32.3,<3",

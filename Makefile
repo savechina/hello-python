@@ -1,18 +1,23 @@
-.PHONY: help install test clean lint format build
-# Variables
-UV = uv
-PYTHON = $(UV) run python
-TEST = $(UV) run pytest
+.PHONY: help init install sync run test clean lint format build
 
-#Targets
+# Variables
+UV ?= uv
+UV_RUN = $(UV) run
+PYTHON = $(UV_RUN) python
+TEST = $(UV_RUN) pytest
+
+# Targets
 help:
 	@echo "Available make tasks:"
-	@echo "  install    - Install dependencies"
+	@echo "  init       - Install uv (via Homebrew)"
+	@echo "  install    - Install/sync dependencies (uv sync)"
+	@echo "  sync       - Alias for install"
+	@echo "  run        - Run the CLI (make run ARGS='greet World')"
 	@echo "  test       - Run tests"
 	@echo "  clean      - Clean up build artifacts"
 	@echo "  lint       - Lint the code"
 	@echo "  format     - Format the code"
-	@echo "  build      - Build the project"
+	@echo "  build      - Build sdist + wheel (uv build)"
 
 init:
 	@echo "Initializing project..."
@@ -22,27 +27,30 @@ install:
 	@echo "Installing dependencies..."
 	$(UV) sync
 
+sync: install
+
+run:
+	@echo "Running hello CLI..."
+	$(UV_RUN) hello $(ARGS)
+
 test:
 	@echo "Running tests..."
-	$(UV) run pytest -s -v
+	$(UV_RUN) pytest -s -v
 
 clean:
 	@echo "Cleaning up..."
-	rm -rf __pycache__ .pytest_cache .mypy_cache .coverage dist
-	rm *.log
-	find . -name "*.pyc" -exec rm -f {} +
-	find . -name "__pycache__" -exec rm -rf {} +
+	rm -rf build dist .pytest_cache .mypy_cache .ruff_cache .coverage
+	find . -maxdepth 1 -name "*.log" -type f -delete
+	find . -path ./.venv -prune -o -name "*.pyc" -exec rm -f {} +
+	find . -path ./.venv -prune -o -name "__pycache__" -type d -exec rm -rf {} +
+
 lint:
-	$(UV) run ruff check .
+	$(UV_RUN) ruff check .
 
 format:
-	@echo "Formating ..."
-	$(UV) run ruff format .
+	@echo "Formatting ..."
+	$(UV_RUN) ruff format .
 
 build:
 	@echo "Building ..."
 	$(UV) build
-
-# test:
-# 	@echo "Running tests..."
-# 	$(UV) run python -m unittest discover -s tests
